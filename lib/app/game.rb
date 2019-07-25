@@ -2,11 +2,12 @@ require 'pry'
 require_relative "player"
 
 class Game
-  attr_accessor :turn, :grid
+  attr_accessor :turn, :grid, :count
 
   def initialize
     @turn = "x"
     @grid=[[" "," "," "],[" "," "," "],[" "," "," "]]
+    @count=0
 
   end
 
@@ -38,6 +39,10 @@ class Game
 
   def check_win
     check_row || check_column || check_diagonal
+  end
+
+  def check_draw
+    if count == 9 && check_win==false then true else false end
   end
 
   def insert_play
@@ -72,6 +77,7 @@ class Game
       if grid[x][y] == " "
         grid[x][y]=turn
         i=1
+        @count=@count+1
         return [x,y]
       else
        puts"Case déjà rempli essaye encore!"

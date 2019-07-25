@@ -22,8 +22,16 @@ while user_input=="y"
     game.insert_play
     board.grid=game.grid
     board.print
-    if game.check_win==true
+    if game.check_win==true 
       if game.turn=="x" then puts "#{player.name_player1} a gagné" else puts "#{player.name_player2} a gagné" end
+      puts "Voulez-vous refaire une partie? (y/n)"
+      user_input=gets.chomp
+        if user_input=="y"
+          game=Game.new
+          board=Board.new
+        end
+    elsif game.check_draw==true
+      puts 'MATCH NUL - Try again'
       puts "Voulez-vous refaire une partie? (y/n)"
       user_input=gets.chomp
         if user_input=="y"
